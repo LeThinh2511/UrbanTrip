@@ -16,7 +16,6 @@ public class User {
 	}
 	
 	public ResultSet getListUser() {
-		System.out.println("User.java ever been there");
 		return dal.getData("select * from urbantrip.user");
 		
 	} 
