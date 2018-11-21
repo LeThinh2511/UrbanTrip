@@ -21,10 +21,7 @@ public class ShowUser extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		ResultSet rs = user.getListUser();
-		request.setAttribute("rs", rs);
-		request.getRequestDispatcher("ShowUser.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

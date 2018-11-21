@@ -6,18 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.Driver;
 
 public class User {
-	DAL dal;
-	
-	public User () {
-		dal = new DAL();
+	String email;
+	String password;
+
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
 	}
-	
-	public ResultSet getListUser() {
-		return dal.getData("select * from urbantrip.user");
-		
-	} 
-	
+
+	public User() {
 	}
+}

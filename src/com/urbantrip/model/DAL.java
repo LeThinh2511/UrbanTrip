@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.mysql.jdbc.Driver;
+import java.util.ArrayList;
 
 public class DAL {
 	Connection conn;
@@ -15,7 +14,7 @@ public class DAL {
 	public DAL () {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/urbantrip", "root", "kyphong1997");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/urbantrip", "root", "123456");
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -49,6 +48,25 @@ public class DAL {
 			return stsm.executeUpdate(sql) > 0 ? true : false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean validateUser(User user) {
+		String sql = "select * from User where email = '" + user.email + "'";
+		try {
+			stsm = conn.createStatement();
+			ResultSet rs = stsm.executeQuery(sql);
+			while (rs.next()) {
+				String password = rs.getString(4);
+				if (password.equals(user.password)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;

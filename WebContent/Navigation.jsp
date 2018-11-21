@@ -1,12 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Navigation</title>
-</head>
-<body>
+
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -32,9 +24,10 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-</body>
-</html>
