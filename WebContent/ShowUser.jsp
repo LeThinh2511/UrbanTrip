@@ -10,9 +10,6 @@
 <body>
 List User
 <% ResultSet rs = (ResultSet)request.getAttribute("rs"); %>
-<% if (rs == null) { %>
-null 2
-<%} %>
 <% try { while (rs.next()) {%>
 <h4> <%= rs.getString(2) %></h4>
 <% } } catch (SQLException se) {
