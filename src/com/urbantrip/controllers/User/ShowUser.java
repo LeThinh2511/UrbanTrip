@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.urbantrip.model.DAL;
 import com.urbantrip.model.User;
 
 @WebServlet("/ShowUser")
@@ -21,8 +22,8 @@ public class ShowUser extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		ResultSet rs = user.getListUser();
+		DAL dal = new DAL();
+		ResultSet rs = dal.getListUser();
 		request.setAttribute("rs", rs);
 		request.getRequestDispatcher("ShowUser.jsp").forward(request, response);
 	}

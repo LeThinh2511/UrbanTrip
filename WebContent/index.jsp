@@ -29,6 +29,7 @@
 	<jsp:include page="Header.jsp"></jsp:include>
 	<jsp:include page="Body.jsp"></jsp:include>
 	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="loginForm.jsp"></jsp:include>
 	
 	<!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
