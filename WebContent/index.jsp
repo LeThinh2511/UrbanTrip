@@ -25,11 +25,11 @@
 </head>
 <body id="page-top">
 	
-	<jsp:include page="Navigation.jsp"></jsp:include>
-	<jsp:include page="Header.jsp"></jsp:include>
-	<jsp:include page="Body.jsp"></jsp:include>
-	<jsp:include page="Footer.jsp"></jsp:include>
-	<jsp:include page="loginForm.jsp"></jsp:include>
+	<jsp:include page="/layout/Navigation.jsp"></jsp:include>
+	<jsp:include page="/layout/Header.jsp"></jsp:include>
+	<jsp:include page="/layout/Body.jsp"></jsp:include>
+	<jsp:include page="/layout/Footer.jsp"></jsp:include>
+	<jsp:include page="/layout/loginForm.jsp"></jsp:include>
 	
 	<!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

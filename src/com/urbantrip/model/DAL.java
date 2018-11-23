@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.jdbc.Driver;
-
-import define.Define;
+import com.urbantrip.define.Define;
 
 public class DAL {
 	Connection conn;
@@ -32,10 +31,8 @@ public class DAL {
 	
 	public ResultSet getData(String sql) {
 		stsm = null;
-		System.out.println(" ever been there");
 		try {
 			stsm = conn.createStatement();
-			System.out.println(stsm.executeQuery(sql) + "");
 			return stsm.executeQuery(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

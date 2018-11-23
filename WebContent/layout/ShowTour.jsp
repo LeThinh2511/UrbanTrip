@@ -20,7 +20,7 @@
 		                  <i class="fas fa-plus fa-3x"></i>
 		                </div>
 		              </div>
-		              <img class="img-fluid" src="<%=rs.getString(6)%>" alt="">
+		              <img class="img-fluid" src="./<%=rs.getString(6)%>" alt="">
 		            </a>
 		            <div class="portfolio-caption">
 		              <h4><%= rs.getString(2) %></h4>

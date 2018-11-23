@@ -38,11 +38,9 @@ public class LoginController extends HttpServlet {
 		User user = new User(email, password);
 		DAL dal =new DAL();
 		if (dal.validateUser(user)) {
-			System.out.println("user is valid");
-			response.sendRedirect("admin/index.jsp");
+			response.sendRedirect("layout/admin/index.jsp");
 		} else {
-			System.out.println("user is invalid");
-			response.sendRedirect("admin/index.jsp");
+			response.sendRedirect("index");
 		}
 	}
 
