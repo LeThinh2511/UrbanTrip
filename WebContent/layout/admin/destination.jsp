@@ -1,3 +1,9 @@
+<%@page import="com.urbantrip.model.Destination"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.urbantrip.model.DAL"%>
+<%@page import="com.urbantrip.model.Tour"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,7 +28,27 @@
         <jsp:include page="/layout/admin/layout/navigation.jsp"></jsp:include>
 
         <div id="page-wrapper">
-            <h1>Hey guys, code the body here plzz</h1>
+        <% DAL dal = new DAL();
+		ArrayList<Destination> allDestinations = new ArrayList<>();
+		allDestinations = dal.getAllDestination();
+		System.out.println("num of des" + allDestinations.size());%>
+		<div class="row">
+			<h2 class="text-center">All Destinations</h2><hr/>
+		</div>
+		<div class="container">
+		<div class="row">
+		<% for (int i = 0; i < allDestinations.size(); i++) { 
+				Destination destination = allDestinations.get(i); 
+				System.out.println(destination.getImagePath());%>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+				    <h4><%= destination.getName() %></h4>
+				    <img src="../../<%=destination.getImagePath()%>" alt="...">
+				</div>
+			</div> 
+		<%} %>
+		</div>
+		</div>
         </div>
         <!-- /#page-wrapper -->
 

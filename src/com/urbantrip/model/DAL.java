@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Driver;
 import com.urbantrip.define.Define;
@@ -75,6 +76,26 @@ public class DAL {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public ArrayList<Destination> getAllDestination() {
+		ArrayList<Destination> allDestinations = new ArrayList<>();
+		String sql = "select * from Destination";
+		try {
+			stsm = conn.createStatement();
+			ResultSet rs = stsm.executeQuery(sql);
+			while (rs.next()) {
+				String idDestination = rs.getString(1);
+				String idTour = rs.getString(3);
+				String name = rs.getString(2);
+				String imagePath = rs.getString(4);
+				Destination newDestination = new Destination(idDestination, idTour, name, imagePath);
+				allDestinations.add(newDestination);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allDestinations;
 	}
 
 }
