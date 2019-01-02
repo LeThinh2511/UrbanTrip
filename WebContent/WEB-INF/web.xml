@@ -57,6 +57,30 @@
     <servlet-name>AddDestinationServlet</servlet-name>
     <url-pattern>/layout/admin/addDestination</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminIndex</servlet-name>
+    <jsp-file>/layout/admin/tour.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndex</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminTour</servlet-name>
+    <jsp-file>/layout/admin/tour.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminTour</servlet-name>
+    <url-pattern>/admin/tour</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddNewTour</servlet-name>
+    <servlet-class>com.urbantrip.controllers.Tour.newTour</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewTour</servlet-name>
+    <url-pattern>/newTour</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>

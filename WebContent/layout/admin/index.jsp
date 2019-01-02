@@ -19,7 +19,7 @@
     <link href="./vendor/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<script language="javascript">
-	    window.location.href = "destination.jsp"
+	    window.location.href = "tour.jsp"
 	</script>
 </head>
 

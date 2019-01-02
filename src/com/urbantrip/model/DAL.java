@@ -15,12 +15,13 @@ import com.urbantrip.define.Define;
 public class DAL {
 	Connection conn;
 	Statement stsm;
-	
-	public DAL () {
+	private PreparedStatement pst;
+
+	public DAL() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/urbantrip", "root", Define.databasePassword);
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,9 +30,9 @@ public class DAL {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public ResultSet getData(String sql) {
 		stsm = null;
 		try {
@@ -43,7 +44,7 @@ public class DAL {
 		}
 		return null;
 	}
-	
+
 	public boolean updateData(String sql) {
 		stsm = null;
 		try {
@@ -55,12 +56,12 @@ public class DAL {
 		}
 		return false;
 	}
-	
+
 	public ResultSet getListUser() {
 		return this.getData("select * from urbantrip.user");
-		
+
 	}
-	
+
 	public boolean validateUser(User user) {
 		String sql = "select * from User where email = '" + user.email + "'";
 		try {
@@ -236,6 +237,126 @@ public class DAL {
 			e.printStackTrace();
 		}
 		return id;
+	}
+
+	public ArrayList<Tour> getAllTour() {
+		ArrayList<Tour> allTours = new ArrayList<>();
+		String sql = "select * from Tour";
+		try {
+			stsm = conn.createStatement();
+			ResultSet rs = stsm.executeQuery(sql);
+			while (rs.next()) {
+				String idTour = rs.getString(1);
+				String name = rs.getString(2);
+				String description = rs.getString(3);
+				Double price = Double.parseDouble(rs.getString(4));
+				String type = rs.getString(5);
+				String imagePath = rs.getString(6);
+				Boolean isDeleted = Integer.parseInt(rs.getString(7)) == 0 ? false : true;
+				allTours.add(new Tour(idTour, name, description, price, type, imagePath, isDeleted));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allTours;
+	}
+
+	public boolean deleleTour(int id) throws SQLException {
+//		String sql = "Delete from urbantrip.tour where id_tour =" + id;
+		String sql = "DELETE FROM urbantrip.tour where id_tour =?";
+		pst = conn.prepareStatement(sql);
+		pst.setInt(1, id);
+
+		return pst.executeUpdate() > 0;
+
+	}
+
+	public int addNewTour(Tour tour) {
+		String sql = "INSERT INTO urbantrip.tour(name, description, price, type) VALUE(?,?,?,?)";
+		int kq = 0;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, tour.getName());
+			pst.setString(2, tour.getDescription());
+			pst.setDouble(3, tour.getPrice());
+			pst.setString(4, tour.getType());
+			kq = pst.executeUpdate();
+
+			pst.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return kq;
+	}
+
+	public int editTour(Tour tour, int id) {
+		String sql = "UPDATE urbantrip.tour set name = ?, description = ?, price = ?, type=? WHERE id_tour =?";
+		int kq = 0;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, tour.getName());
+			pst.setString(2, tour.getDescription());
+			pst.setDouble(3, tour.getPrice());
+			pst.setString(4, tour.getType());
+			pst.setInt(5, id);
+			kq = pst.executeUpdate();
+
+			pst.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return kq;
+	}
+	
+	public int addNewTrip(Trip trip) {
+		String sql = "INSERT INTO urbantrip.trip(tourist,numberOfParticipants,nationality,phone,email,hotelAddress,id_tour,message) VALUE(?,?,?,?,?,?,?,?)";
+		int kq = 0;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, trip.getTouristName());
+			pst.setString(2, trip.getNumberOfParticipants());
+			pst.setString(3, trip.getNationality() );
+			pst.setString(4, trip.getPhone() );
+			pst.setString(5, trip.getEmail() );
+			pst.setString(6, trip.getHotelAddress() );
+			pst.setInt(7, trip.getId_tour() );
+			pst.setString(8, trip.getMessage() );
+			
+			
+			kq = pst.executeUpdate();
+
+			pst.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return kq;
 	}
 
 }

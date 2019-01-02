@@ -38,9 +38,9 @@ public class LoginController extends HttpServlet {
 		User user = new User(email, password);
 		DAL dal =new DAL();
 		if (dal.validateUser(user)) {
-			response.sendRedirect("layout/admin/index.jsp");
+			response.sendRedirect(request.getContextPath()+ "/admin");
 		} else {
-			response.sendRedirect("index");
+			response.sendRedirect(request.getContextPath()+"/");
 		}
 	}
 
