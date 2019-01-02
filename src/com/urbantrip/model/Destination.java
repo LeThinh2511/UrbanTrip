@@ -1,29 +1,36 @@
 package com.urbantrip.model;
 
 public class Destination {
-	String idDestination;
-	String idTour;
+	int idDestination;
+	int idTour;
 	String name;
-	String imagePath;
+	int idImage;
 	
-	public Destination(String idDestination, String idTour, String name, String imagePath) {
+	public Destination(int idDestination, int idTour, String name, int idImage) {
 		super();
 		this.idDestination = idDestination;
 		this.idTour = idTour;
 		this.name = name;
-		this.imagePath = imagePath;
+		this.idImage = idImage;
 	}
 	
-	public String getIdDestination() {
+	public Destination(int idTour, String name, int idImage) {
+		super();
+		this.idTour = idTour;
+		this.name = name;
+		this.idImage = idImage;
+	}
+
+	public int getIdDestination() {
 		return idDestination;
 	}
-	public void setIdDestination(String idDestination) {
+	public void setIdDestination(int idDestination) {
 		this.idDestination = idDestination;
 	}
-	public String getIdTour() {
+	public int getIdTour() {
 		return idTour;
 	}
-	public void setIdTour(String idTour) {
+	public void setIdTour(int idTour) {
 		this.idTour = idTour;
 	}
 	public String getName() {
@@ -32,11 +39,12 @@ public class Destination {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImagePath() {
-		return imagePath;
+
+	public int getIdImage() {
+		return idImage;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+
+	public void setIdImage(int idImage) {
+		this.idImage = idImage;
 	}
-	
 }
